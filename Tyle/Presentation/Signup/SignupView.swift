@@ -24,6 +24,16 @@ struct SignupView: View {
             }
         }
         .padding()
+        .alert(
+            "Sign Up error",
+            isPresented: $vm.showAlert
+        ) {
+            Button("OK") {
+                // Handle the acknowledgement.
+            }
+        } message: {
+            Text("Please check your credentials and try again.")
+        }
     }
 }
 

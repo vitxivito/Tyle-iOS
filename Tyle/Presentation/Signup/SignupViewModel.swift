@@ -1,4 +1,4 @@
- 
+
 //
 //  SignupViewmodel.swift
 //  Tyle
@@ -12,6 +12,7 @@ class SignupViewModel: ObservableObject {
     @Published var username: String = ""
     @Published var password: String = ""
     @Published var confirmPassword: String = ""
+    @Published var showAlert: Bool = false
     private let manager = FirebaseManager()
     
     func signup() {
@@ -19,8 +20,10 @@ class SignupViewModel: ObservableObject {
             return
         }
         if checkMatchingPasswords() {
-            manager.createUser(username: username, email: email, password: password)
-            
+            let result = manager.createUser(username: username, email: email, password: password)
+            if result.isError {
+                showAlert = true
+            }
         }
     }
 }
