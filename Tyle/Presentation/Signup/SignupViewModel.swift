@@ -12,8 +12,21 @@ class SignupViewModel: ObservableObject {
     @Published var username: String = ""
     @Published var password: String = ""
     @Published var confirmPassword: String = ""
+    private let manager = FirebaseManager()
     
     func signup() {
-        
+        if email.isEmpty || username.isEmpty || password.isEmpty {
+            return
+        }
+        if checkMatchingPasswords() {
+            manager.createUser(username: username, email: email, password: password)
+            
+        }
+    }
+}
+
+private extension SignupViewModel {
+    func checkMatchingPasswords() -> Bool {
+        return password == confirmPassword
     }
 }
