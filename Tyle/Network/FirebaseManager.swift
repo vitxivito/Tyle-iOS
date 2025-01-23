@@ -17,7 +17,7 @@ class FirebaseManager {
         auth.createUser(withEmail: email, password: password) { result, error in
             guard let error else {
                 // no ha habido error
-                let profileResult =  self.createProfile(username: username)
+                let profileResult =  self.createProfile(username: username, email: email.lowercased())
                 if profileResult.isError {
                     resultUser.isError = true
                     resultUser.message = profileResult.message
@@ -30,10 +30,10 @@ class FirebaseManager {
         }
         return resultUser
     }
-    func createProfile(username: String) -> Result {
+    func createProfile(username: String, email: String) -> Result {
         var result = Result(message: "", isError: false)
         let profile = User(username: username, friends: [], friendsPending: [], bio: "")
-        let docRef = database.collection("users").document(username)
+        let docRef = database.collection("users").document(email)
         docRef.setData(["username" : profile.username,
                         "bio" : profile.bio]) { error in
             // ha habido un error
