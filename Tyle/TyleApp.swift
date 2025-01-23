@@ -22,13 +22,20 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct TyleApp: App {
     // register app delegate for Firebase setup
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    
+    @StateObject var router = Router()
     
     var body: some Scene {
         WindowGroup {
-            NavigationView {
-                SignupView()
+            NavigationStack(path: $router.path) {
+                WelcomeView()
+                    .navigationDestination(for: Router.Destination.self) { destination in
+                        switch destination {
+                        case .login: LoginView()
+                        case .signup: SignupView()
+                        }
+                    }
             }
+            .environmentObject(router)
         }
     }
 }
