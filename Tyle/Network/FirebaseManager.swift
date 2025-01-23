@@ -58,4 +58,9 @@ class FirebaseManager {
         }
         return result
     }
+    func login(email: String, password: String) {
+        auth.signIn(withEmail: email, password: password) { result, error in
+        
+        }
+    }
 }
