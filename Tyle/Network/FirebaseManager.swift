@@ -70,7 +70,7 @@ class FirebaseManager {
     // Log in a user with email and password
     func login(email: String, password: String, completion: @escaping (Result) -> Void) {
         auth.signIn(withEmail: email, password: password) { result, error in
-            if let error = error {
+            if let error {
                 completion(Result(message: error.localizedDescription, isError: true))
             } else {
                 completion(Result(message: "Login successful", isError: false))
