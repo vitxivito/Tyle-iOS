@@ -20,10 +20,12 @@ class SignupViewModel: ObservableObject {
             return
         }
         if checkMatchingPasswords() {
-            let result = manager.createUser(username: username, email: email, password: password)
-            if result.isError {
-                showAlert = true
-            }
+            manager.createUser(username: username, email: email, password: password, completion: { result in
+                if result.isError {
+                    self.showAlert = true
+                }
+            })
+
         }
     }
 }
