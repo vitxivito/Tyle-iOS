@@ -34,7 +34,7 @@ class FirebaseManager {
     
     // Create a profile for a user in Firestore
     func createProfile(username: String, email: String, completion: @escaping (Result) -> Void) {
-        let profile = User(username: username, friends: [], friendsPending: [], bio: "")
+        let profile = User(username: username, friends: [], friendsPending: [], bio: "", email: email)
         let docRef = database.collection("users").document(email)
         docRef.setData([
             "username": profile.username,
@@ -99,6 +99,7 @@ class FirebaseManager {
             if let documentData = documents.first?.data() {
                 guard let user = parseUser(documentData: documentData) else {
                     completion(nil, Result(message: "Couldn not parse user", isError: true))
+                    return
                 }
                 completion(user, Result(message: "", isError: false))
             }
