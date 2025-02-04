@@ -14,7 +14,15 @@ struct SplashView: View {
         Text("Splash")
         ProgressView()
             .task {
-                router.navigateTo(.tab)
+                vm.checkUser()
+            }
+            .onChange(of: vm.showTab) {
+                if vm.showTab {
+                    router.navigateTo(.tab)
+                }
+            }
+            .fullScreenCover(isPresented: $vm.showWelcome) {
+                WelcomeView()
             }
     }
 }

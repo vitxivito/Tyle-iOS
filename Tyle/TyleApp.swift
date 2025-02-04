@@ -33,7 +33,6 @@ struct TyleApp: App {
                         case .login: LoginView()
                         case .signup: SignupView()
                         case .tab: TyleTabView()
-                        
                         }
                     }
             }

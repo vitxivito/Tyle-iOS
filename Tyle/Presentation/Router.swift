@@ -13,7 +13,6 @@ final class Router: ObservableObject {
         case login
         case signup
         case tab
-        
     }
     @Published var path = NavigationPath()
     

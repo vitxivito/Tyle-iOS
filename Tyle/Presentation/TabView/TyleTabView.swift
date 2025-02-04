@@ -12,18 +12,19 @@ struct TyleTabView: View {
         TabView {
             HomeView()
                 .tabItem {
-                    Label("Home", systemImage: "house")
+                    Label("", systemImage: "house")
                 }
             CreatePostView()
                 .tabItem {
-                    Label("Home", systemImage: "plus")
+                    Label("", systemImage: "plus")
                 }
             ProfileView()
                 .tabItem {
-                    Label("Home", systemImage: "person")
+                    Label("", systemImage: "person")
                 }
         }
         .navigationBarBackButtonHidden()
+        .tint(Color.pink)
     }
 }
 
