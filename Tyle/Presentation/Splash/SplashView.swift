@@ -21,6 +21,11 @@ struct SplashView: View {
                     router.navigateTo(.tab)
                 }
             }
+            .onChange(of: vm.showWelcome) {
+                if vm.showWelcome {
+                    router.navigateTo(.welcome)
+                }
+            }
         
     }
 }
