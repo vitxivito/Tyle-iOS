@@ -8,6 +8,11 @@
 import Combine
 
 class HomeViewModel: ObservableObject {
-    
+    @Published var hometype: HomeType = .all
+    enum HomeType: String, CaseIterable, Identifiable {
+        case all
+        case following
+        var id: Self { self }
+    }
 }
 

@@ -14,7 +14,12 @@ struct HomeView: View {
             VStack {
                 Text("Home")
                     .font(.title)
-                allPosts()
+                Picker("Home", selection: $vm.hometype) {
+                    ForEach(HomeViewModel.HomeType.allCases) { type in
+                        Text(type.rawValue.capitalized)
+                    }
+                }
+                .pickerStyle(.segmented)
             }
         }
     }
