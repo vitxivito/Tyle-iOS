@@ -25,6 +25,7 @@ struct WelcomeView: View {
             }
             
         }
+        .navigationBarBackButtonHidden()
     }
 }
 

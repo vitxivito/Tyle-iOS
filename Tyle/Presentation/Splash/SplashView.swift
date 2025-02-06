@@ -21,9 +21,7 @@ struct SplashView: View {
                     router.navigateTo(.tab)
                 }
             }
-            .fullScreenCover(isPresented: $vm.showWelcome) {
-                WelcomeView()
-            }
+        
     }
 }
 
