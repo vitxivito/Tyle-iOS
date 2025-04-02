@@ -21,12 +21,15 @@ struct LoginView: View {
             } label: {
                 Text("Login")
             }
+            .buttonStyle(.primary)
+
         }
         .onChange(of: vm.showTab) {
             if vm.showTab {
                 router.navigateTo(.tab)
             }
         }
+        .padding()
     }
 }
 
