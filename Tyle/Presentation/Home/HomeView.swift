@@ -20,6 +20,7 @@ struct HomeView: View {
                     }
                 }
                 .pickerStyle(.segmented)
+                
             }
         }
     }
@@ -28,6 +29,7 @@ private extension HomeView {
     @ViewBuilder
     func allPosts() -> some View {
         Text("Todos los posts")
+            .onAppear{vm.getAllPosts()}
     }
     @ViewBuilder
     func followingPosts() -> some View {

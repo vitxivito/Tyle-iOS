@@ -121,4 +121,19 @@ class FirebaseManager {
         // Create and return the User object
         return User(username: username, friends: friends, friendsPending: friendsPending, bio: bio, email: email)
     }
+    func getAllPosts(completion: @escaping ([Post]?, Result) -> Void) {
+        database.collection("posts").order(by: "date", descending: true).getDocuments { (querySnapshot, error) in
+            if let error {
+                completion(nil, Result(message: error.localizedDescription, isError: true))
+                return
+            }
+            var posts: [Post] = []
+            for document in querySnapshot?.documents ?? [] {
+                if let post = Post(document: document.data()) {
+                    posts.append(post)
+                }
+            }
+            completion(posts, Result(message:"", isError: false))
+        }
+    }
 }
