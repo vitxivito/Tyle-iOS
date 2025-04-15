@@ -26,4 +26,10 @@ struct Post {
         self.img = img
         self.userId = userId
     }
+    init( caption: String, date: Date, img: String, userId: String){
+        self.caption = caption
+        self.date = date
+        self.img = img
+        self.userId = userId
+    }
 }
