@@ -22,6 +22,8 @@ struct SignupView: View {
             } label: {
                 Text("Sign up")
             }
+            .buttonStyle(.primary)
+
         }
         .padding()
         .alert(

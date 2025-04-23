@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     @StateObject var vm = LoginViewModel()
+    @EnvironmentObject var router: Router
     var body: some View {
         VStack {
             Text("Login")
@@ -20,10 +21,19 @@ struct LoginView: View {
             } label: {
                 Text("Login")
             }
+            .buttonStyle(.primary)
+
         }
+        .onChange(of: vm.showTab) {
+            if vm.showTab {
+                router.navigateTo(.tab)
+            }
+        }
+        .padding()
     }
 }
 
 #Preview {
     LoginView()
+        .environmentObject(Router())
 }

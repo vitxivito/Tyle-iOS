@@ -1,0 +1,30 @@
+//
+//  HomeViewModel.swift
+//  Tyle
+//
+//  Created by Vitoria Garcia on 27/1/25.
+//
+
+import Combine
+
+class HomeViewModel: ObservableObject {
+    private let manager = FirebaseManager()
+    @Published var hometype: HomeType = .all
+    @Published var posts: [Post] = []
+    enum HomeType: String, CaseIterable, Identifiable {
+        case all
+        case following
+        var id: Self { self }
+    }
+    func getAllPosts() {
+        manager.getAllPosts { posts, result in
+            if result.isError{
+                print(result.message)
+                return
+            }
+            self.posts = posts ?? []
+            
+        }
+    }
+}
+

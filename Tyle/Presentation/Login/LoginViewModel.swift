@@ -11,6 +11,7 @@ class LoginViewModel: ObservableObject {
     @Published var email: String = ""
     @Published var password: String = ""
     @Published var showAlert: Bool = false
+    @Published var showTab = false
     private let manager = FirebaseManager()
     
     func login(){
@@ -20,7 +21,10 @@ class LoginViewModel: ObservableObject {
         manager.login(email: email, password: password) { result in
             if result.isError {
                 self.showAlert = true
+                return
             }
+            // login success
+            self.showTab = true
         }
     }
 }

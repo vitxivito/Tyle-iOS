@@ -12,6 +12,8 @@ final class Router: ObservableObject {
     public enum Destination: Codable, Hashable {
         case login
         case signup
+        case tab
+        case welcome
     }
     @Published var path = NavigationPath()
     
@@ -26,4 +28,5 @@ final class Router: ObservableObject {
     func navigateTo(_ destination: Destination) {
         path.append(destination)
     }
+    
 }

@@ -10,4 +10,5 @@ struct User {
     let friends: [String]
     let friendsPending: [String]
     let bio: String
+    let email : String
 }
