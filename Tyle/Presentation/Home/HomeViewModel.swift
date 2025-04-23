@@ -23,7 +23,7 @@ class HomeViewModel: ObservableObject {
                 return
             }
             self.posts = posts ?? []
-            print(self.posts)
+            
         }
     }
 }

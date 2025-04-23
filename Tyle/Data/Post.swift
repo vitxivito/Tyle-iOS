@@ -7,7 +7,7 @@
 import Firebase
 import Foundation
 
-struct Post {
+struct Post: Hashable {
     let caption: String
     let date: Date
     let img: String

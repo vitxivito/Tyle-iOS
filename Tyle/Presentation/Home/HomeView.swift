@@ -20,16 +20,28 @@ struct HomeView: View {
                     }
                 }
                 .pickerStyle(.segmented)
+                switch vm.hometype {
+                case .all:
+                    allPosts()
+                case .following:
+                    followingPosts()
+                    
+                }
                 
             }
+            .onAppear{vm.getAllPosts()}
         }
     }
 }
 private extension HomeView {
     @ViewBuilder
     func allPosts() -> some View {
-        Text("Todos los posts")
-            .onAppear{vm.getAllPosts()}
+        LazyVStack{
+            ForEach(vm.posts, id: \.self) { post in
+                PostView(post: post)
+            }
+        }
+        
     }
     @ViewBuilder
     func followingPosts() -> some View {
