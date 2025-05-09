@@ -9,7 +9,11 @@ import SwiftUI
 struct PrimaryTextField: TextFieldStyle {
     func _body(configuration: TextField<Self._Label>) -> some View {
         configuration
-            .background(.red)
+            .padding()
+            .overlay {
+                RoundedRectangle(cornerRadius: 10)
+                        .stroke(.black, lineWidth: 1)
+            }
     }
 }
 
@@ -17,26 +21,8 @@ struct PrimaryTextField: TextFieldStyle {
 struct TextFieldPreviews: View {
     var body: some View {
         VStack{
-            Button{
-                
-            } label: {
-                Text("Hola")
-            }
-            .buttonStyle(.primary)
-            
-            Button{
-                
-            } label: {
-                Text("Hola")
-            }
-            .buttonStyle(.secondary)
-            
-            Button{
-                
-            } label: {
-                Text("Hola")
-            }
-            .buttonStyle(.tertiary)
+            TextField("jjij", text: .constant(""))
+                .textFieldStyle(PrimaryTextField())
         }
         .padding()
     }
