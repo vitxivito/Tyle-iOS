@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct PrimaryButton: ButtonStyle {
+    @Environment(\.isEnabled) var isEnabled: Bool
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .frame(maxWidth: .infinity)
             .padding(20)
-            .background(.black)
+            .background(isEnabled ? .black : .gray)
             .foregroundStyle(Color.white)
             .font(.title)
             .clipShape(.capsule)
