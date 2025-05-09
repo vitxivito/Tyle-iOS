@@ -13,10 +13,16 @@ struct SignupView: View {
         VStack {
             Text("Sign up")
                 .font(.title)
+            Spacer()
             TextField("Username", text: $vm.username)
+                .textFieldStyle(PrimaryTextField())
             TextField("Email", text: $vm.email )
+                .textFieldStyle(PrimaryTextField())
             TextField("Password", text: $vm.password)
+                .textFieldStyle(PrimaryTextField())
             TextField("Confirm Password", text: $vm.confirmPassword)
+                .textFieldStyle(PrimaryTextField())
+            Spacer()
             Button {
                 vm.signup()
             } label: {
@@ -25,7 +31,7 @@ struct SignupView: View {
             .buttonStyle(.primary)
 
         }
-        .padding()
+        .padding(.horizontal)
         .alert(
             "Sign Up error",
             isPresented: $vm.showAlert
