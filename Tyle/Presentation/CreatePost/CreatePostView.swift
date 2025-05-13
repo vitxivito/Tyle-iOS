@@ -49,6 +49,7 @@ struct CreatePostView: View {
             Spacer()
             
             Button {
+                vm.uploadPost()
             } label: {
                 Text("Publicar")
             }
@@ -58,6 +59,26 @@ struct CreatePostView: View {
         .padding(.horizontal)
         .sheet(isPresented: $vm.showImagePicker) {
             ImagePicker(image: $vm.inputImage)
+        }
+        .alert(
+            "Post subido correctamente",
+            isPresented: $vm.showSuccess
+        ) {
+            Button("OK") {
+                // Handle the acknowledgement.
+            }
+        } message: {
+            Text(":)")
+        }
+        .alert(
+            "Error",
+            isPresented: $vm.showError
+        ) {
+            Button("OK") {
+                // Handle the acknowledgement.
+            }
+        } message: {
+            Text(vm.error)
         }
         .onChange(of: vm.inputImage) {
             vm.loadImage()

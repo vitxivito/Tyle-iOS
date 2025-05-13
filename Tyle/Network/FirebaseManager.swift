@@ -137,7 +137,6 @@ class FirebaseManager {
         }
     }
     func uploadPost(post: Post, completion: @escaping (Result) -> Void) {
-        let postId = UUID().uuidString
         let postData: [String: Any] = [
             "caption": post.caption,
             "date": Timestamp(date: post.date),
@@ -152,5 +151,9 @@ class FirebaseManager {
                 completion(Result(message: "", isError: false))
             }
         }
+    }
+    
+    func getCurrentUserEmail() -> String? {
+        return auth.currentUser?.email
     }
 }
