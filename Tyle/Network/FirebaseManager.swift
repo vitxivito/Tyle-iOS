@@ -136,4 +136,21 @@ class FirebaseManager {
             completion(posts, Result(message:"", isError: false))
         }
     }
+    func uploadPost(post: Post, completion: @escaping (Result) -> Void) {
+        let postId = UUID().uuidString
+        let postData: [String: Any] = [
+            "caption": post.caption,
+            "date": Timestamp(date: post.date),
+            "img": post.img,
+            "userId": post.userId
+        ]
+        database.collection("posts").addDocument(data: postData){ error in
+            if let error {
+                completion(Result(message: error.localizedDescription, isError: true))
+                
+            } else{
+                completion(Result(message: "", isError: false))
+            }
+        }
+    }
 }
