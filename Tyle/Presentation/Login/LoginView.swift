@@ -14,8 +14,12 @@ struct LoginView: View {
         VStack {
             Text("Login")
                 .font(.title)
+            Spacer()
             TextField("Email", text: $vm.email )
+                .textFieldStyle(PrimaryTextField())
             TextField("Password", text: $vm.password)
+                .textFieldStyle(PrimaryTextField())
+           Spacer()
             Button {
                 vm.login()
             } label: {
@@ -29,7 +33,7 @@ struct LoginView: View {
                 router.navigateTo(.tab)
             }
         }
-        .padding()
+        .padding(.horizontal)
     }
 }
 

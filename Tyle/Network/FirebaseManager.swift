@@ -136,4 +136,24 @@ class FirebaseManager {
             completion(posts, Result(message:"", isError: false))
         }
     }
+    func uploadPost(post: Post, completion: @escaping (Result) -> Void) {
+        let postData: [String: Any] = [
+            "caption": post.caption,
+            "date": Timestamp(date: post.date),
+            "img": post.img,
+            "user-id": post.userId
+        ]
+        database.collection("posts").addDocument(data: postData){ error in
+            if let error {
+                completion(Result(message: error.localizedDescription, isError: true))
+                
+            } else{
+                completion(Result(message: "", isError: false))
+            }
+        }
+    }
+    
+    func getCurrentUserEmail() -> String? {
+        return auth.currentUser?.email
+    }
 }

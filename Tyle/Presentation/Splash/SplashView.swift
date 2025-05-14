@@ -11,7 +11,7 @@ struct SplashView: View {
     @StateObject var vm = SplashViewModel()
     @EnvironmentObject var router: Router
     var body: some View {
-        Text("Splash")
+        Text("Tyle")
         ProgressView()
             .task {
                 vm.checkUser()
