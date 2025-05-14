@@ -141,7 +141,7 @@ class FirebaseManager {
             "caption": post.caption,
             "date": Timestamp(date: post.date),
             "img": post.img,
-            "userId": post.userId
+            "user-id": post.userId
         ]
         database.collection("posts").addDocument(data: postData){ error in
             if let error {

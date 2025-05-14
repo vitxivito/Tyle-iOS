@@ -15,7 +15,7 @@ struct CreatePostView: View {
                 vm.image
                     .resizable()
                     .aspectRatio(1, contentMode: .fit)
-                    .frame(width: .infinity)
+                    .frame(maxWidth: .infinity)
                 if !vm.canPublish {
                     Button {
                         vm.showImagePicker.toggle()
@@ -39,7 +39,7 @@ struct CreatePostView: View {
                         Spacer()
                     }
                     .aspectRatio(1, contentMode: .fit)
-                    .frame(width: .infinity)
+                    .frame(maxWidth: .infinity)
                     
                 }
             }

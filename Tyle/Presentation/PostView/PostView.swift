@@ -27,7 +27,7 @@ struct PostView: View {
             Image(base64String: post.img)?
                 .resizable()
                 .aspectRatio(1, contentMode: .fit)
-                .frame(width: .infinity)
+                .frame(maxWidth: .infinity)
             Divider()
             Text(post.caption)
                 .padding(.horizontal)

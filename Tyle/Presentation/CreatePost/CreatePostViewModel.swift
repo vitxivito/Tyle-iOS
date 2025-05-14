@@ -42,12 +42,13 @@ class CreatePostViewModel: ObservableObject {
             }
             caption = ""
             inputImage = nil
+            image = .init(uiImage: .init())
             canPublish = false
             showSuccess = true
         }
     }
     func convertUIImageToBase64(_ image: UIImage?) -> String? {
-        guard let imageData = image?.jpegData(compressionQuality: 0.8) else {
+        guard let imageData = image?.jpegData(compressionQuality: 0.1) else {
             return nil
         }
         return imageData.base64EncodedString()
