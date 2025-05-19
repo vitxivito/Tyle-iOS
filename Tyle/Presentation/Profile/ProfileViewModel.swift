@@ -9,5 +9,5 @@
 import Combine
 
 class ProfileViewModel: ObservableObject {
-    
+   @Published var postCount = 80
 }
