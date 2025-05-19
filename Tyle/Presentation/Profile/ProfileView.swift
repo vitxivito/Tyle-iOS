@@ -23,6 +23,9 @@ struct ProfileView: View {
                 Spacer()
             }
             .padding(.horizontal)
+            .task {
+                vm.getPosts()
+            }
         }
     }
 }
@@ -39,7 +42,7 @@ private extension ProfileView{
     }
     @ViewBuilder
     func profileCard() -> some View {
-        Text("user-id")
+        Text(vm.username)
             .fontWeight(.semibold)
         HStack(spacing: 32){
             Button{

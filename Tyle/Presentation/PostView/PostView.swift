@@ -9,11 +9,15 @@ import SwiftUI
 
 struct PostView: View {
     var post: Post
+    var profileAction: () -> Void
     var body: some View {
         VStack(alignment: .leading) {
             HStack{
                 Image(systemName: "person.crop.circle")
                 Text(post.userId)
+                    .onTapGesture {
+                        profileAction()
+                    }
                 Spacer()
                 Button {
                     

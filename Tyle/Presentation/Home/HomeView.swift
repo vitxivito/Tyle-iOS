@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject var vm = HomeViewModel()
+    @EnvironmentObject var router: Router
     var body: some View {
         ScrollView {
             VStack {
@@ -38,7 +39,9 @@ private extension HomeView {
     func allPosts() -> some View {
         LazyVStack{
             ForEach(vm.posts, id: \.self) { post in
-                PostView(post: post)
+                PostView(post: post, profileAction: {
+                    router.navigateTo(.profile(post.userId))
+                })
             }
         }
         

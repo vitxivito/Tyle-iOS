@@ -14,6 +14,7 @@ final class Router: ObservableObject {
         case signup
         case tab
         case welcome
+        case profile(String)
     }
     @Published var path = NavigationPath()
     
