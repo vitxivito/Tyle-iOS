@@ -156,4 +156,22 @@ class FirebaseManager {
     func getCurrentUserEmail() -> String? {
         return auth.currentUser?.email
     }
+    func getPosts(from userId: String, completion: @escaping ([Post]?, Result) -> Void ) {
+        database.collection("posts")
+            .whereField("user-id", isEqualTo: userId)
+            .order(by: "date", descending: true)
+            .getDocuments { (querySnapshot, error) in
+                if let error {
+                    completion(nil, Result(message: error.localizedDescription, isError: true))
+                    return
+                }
+                var posts: [Post] = []
+                for document in querySnapshot?.documents ?? [] {
+                    if let post = Post(document: document.data()) {
+                        posts.append(post)
+                    }
+                }
+                completion(posts, Result(message: "Posts fetched successfully", isError: false))
+            }
+    }
 }
