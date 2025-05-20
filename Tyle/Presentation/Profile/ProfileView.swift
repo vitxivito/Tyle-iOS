@@ -58,15 +58,29 @@ private extension ProfileView{
             Button {
             } label: {
                 VStack {
-                    Text("0")
+                    Text("\(vm.friendsAmount)")
                         .fontWeight(.semibold)
                     Text("Amigos")
                         .fontWeight(.light)
                 }
             }
             .tint(.black)
+            
+            if vm.isPersonalUser(){
+                
+            Button {
+            } label: {
+                VStack {
+                    Text("\(vm.pendingFriendsAmount)")
+                        .fontWeight(.semibold)
+                    Text("Pendientes")
+                        .fontWeight(.light)
+                }
+            }
+            .tint(.black)
+        }
             VStack {
-                Text("1")
+                Text("\(vm.postCount)")
                     .fontWeight(.semibold)
                 Text("Posts")
                     .fontWeight(.light)

@@ -13,6 +13,9 @@ class ProfileViewModel: ObservableObject {
     @Published var username : String
     @Published var posts : [Post] = []
     @Published var bio: String = ""
+    @Published var friendsAmount = 0
+    @Published var pendingFriendsAmount = 0
+
     private let manager = FirebaseManager()
     init(username: String) {
         self.username = username
@@ -43,8 +46,12 @@ class ProfileViewModel: ObservableObject {
             }
             if let user {
                 self.bio = user.bio
-            
+                self.friendsAmount = user.friends.count
+                self.pendingFriendsAmount = user.friendsPending.count
             }
         }
+    }
+    func isPersonalUser()-> Bool {
+        username == (manager.getCurrentUserEmail() ?? "")
     }
 }
