@@ -25,6 +25,7 @@ struct ProfileView: View {
             .padding(.horizontal)
             .task {
                 vm.getPosts()
+                vm.getUserProfile()
             }
         }
     }
@@ -73,7 +74,7 @@ private extension ProfileView{
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         Divider()
-        Text("biografia")
+        Text(vm.bio)
             .fontWeight(.thin)
             .frame(maxWidth: .infinity, alignment: .leading)
     }
