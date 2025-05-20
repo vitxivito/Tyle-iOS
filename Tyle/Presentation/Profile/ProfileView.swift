@@ -34,8 +34,8 @@ private extension ProfileView{
     @ViewBuilder
     func profilePosts() -> some View {
         LazyVGrid(columns: columns) {
-            ForEach(1...vm.postCount, id: \.self) {_ in 
-                Rectangle()
+            ForEach(vm.posts, id:\.self) {post in
+                PostViewMini(post: post)
                     .aspectRatio(contentMode: .fit)
             }
         }

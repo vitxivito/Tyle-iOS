@@ -11,6 +11,7 @@ import Combine
 class ProfileViewModel: ObservableObject {
     @Published var postCount = 80
     @Published var username : String
+    @Published var posts : [Post] = []
     private let manager = FirebaseManager()
     init(username: String) {
         self.username = username
@@ -24,7 +25,9 @@ class ProfileViewModel: ObservableObject {
                 return
             }
             if let posts {
-                print(posts)
+                self.posts = posts
+                self.postCount = posts.count
+                
             }
         }
         
