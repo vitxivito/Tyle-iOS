@@ -34,7 +34,7 @@ struct TyleApp: App {
                         case .signup: SignupView()
                         case .tab: TyleTabView()
                         case .welcome: WelcomeView()
-                        case .profile(let userId): ProfileView()
+                        case .profile(let userId): ProfileView(vm: .init(username: userId))
                         }
                     }
             }

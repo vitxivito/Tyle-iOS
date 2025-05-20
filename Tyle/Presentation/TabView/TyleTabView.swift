@@ -18,7 +18,7 @@ struct TyleTabView: View {
                 .tabItem {
                     Label("", systemImage: "plus")
                 }
-            ProfileView()
+            ProfileView(vm: .init(username: FirebaseManager().getCurrentUserEmail() ?? ""))
                 .tabItem {
                     Label("", systemImage: "person")
                 }

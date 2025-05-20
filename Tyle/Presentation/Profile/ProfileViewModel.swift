@@ -9,23 +9,25 @@
 import Combine
 
 class ProfileViewModel: ObservableObject {
-   @Published var postCount = 80
-    @Published var username = ""
+    @Published var postCount = 80
+    @Published var username : String
     private let manager = FirebaseManager()
+    init(username: String) {
+        self.username = username
+    }
     func getPosts(){
-        if let username = manager.getCurrentUserEmail(){
-            self.username  = username
-            manager.getPosts(from: username) { posts, result in
-                if result.isError{
-                    //show error
-                    print(result.message)
-                    return
-                }
-                if let posts {
-                    print(posts)
-                }
+        self.username  = username
+        manager.getPosts(from: username) { posts, result in
+            if result.isError{
+                //show error
+                print(result.message)
+                return
+            }
+            if let posts {
+                print(posts)
             }
         }
+        
         
         
     }

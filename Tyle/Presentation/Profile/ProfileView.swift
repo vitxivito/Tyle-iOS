@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @StateObject var vm = ProfileViewModel()
+    @StateObject var vm : ProfileViewModel
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible()),
@@ -16,7 +16,7 @@ struct ProfileView: View {
     ]
     var body: some View {
         ScrollView{
-            VStack{
+            VStack {
                 profileCard()
                 profilePosts()
                 
@@ -80,5 +80,5 @@ private extension ProfileView{
 }
 #Preview {
 
-    ProfileView()
+    ProfileView(vm: .init(username: "holi"))
 }
