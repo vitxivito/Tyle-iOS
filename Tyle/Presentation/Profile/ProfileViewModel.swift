@@ -47,7 +47,6 @@ class ProfileViewModel: ObservableObject {
             if let user {
                 self.bio = user.bio
                 self.friendsAmount = user.friends.count
-                self.pendingFriendsAmount = user.friendsPending.count
             }
         }
     }

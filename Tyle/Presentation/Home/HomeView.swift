@@ -41,6 +41,8 @@ private extension HomeView {
             ForEach(vm.posts, id: \.self) { post in
                 PostView(post: post, profileAction: {
                     router.navigateTo(.profile(post.userId))
+                }, followAction: {
+                    
                 })
             }
         }

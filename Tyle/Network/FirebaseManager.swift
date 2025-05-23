@@ -34,13 +34,12 @@ class FirebaseManager {
     
     // Create a profile for a user in Firestore
     func createProfile(username: String, email: String, completion: @escaping (Result) -> Void) {
-        let profile = User(username: username, friends: [], friendsPending: [], bio: "", email: email)
+        let profile = User(username: username, friends: [], bio: "", email: email)
         let docRef = database.collection("users").document(email)
         docRef.setData([
             "username": profile.username,
             "bio": profile.bio,
-            "friends": profile.friends,
-            "friendsPending": profile.friendsPending
+            "friends": profile.friends
         ]) { error in
             if let error = error {
                 completion(Result(message: error.localizedDescription, isError: true))
@@ -110,7 +109,6 @@ class FirebaseManager {
         guard
             let username = documentData["username"] as? String,
             let friends = documentData["friends"] as? [String],
-            let friendsPending = documentData["friendsPending"] as? [String],
             let bio = documentData["bio"] as? String,
             let email = documentData["email"] as? String
         else {
@@ -119,7 +117,7 @@ class FirebaseManager {
         }
         
         // Create and return the User object
-        return User(username: username, friends: friends, friendsPending: friendsPending, bio: bio, email: email)
+        return User(username: username, friends: friends, bio: bio, email: email)
     }
     func getAllPosts(completion: @escaping ([Post]?, Result) -> Void) {
         database.collection("posts").order(by: "date", descending: true).getDocuments { (querySnapshot, error) in
@@ -174,4 +172,42 @@ class FirebaseManager {
                 completion(posts, Result(message: "Posts fetched successfully", isError: false))
             }
     }
+    func addFriend(userId: String, completion: @escaping (Result)-> Void){
+        guard let user = getCurrentUserEmail() else{
+            completion(Result(message: "El usuario no existe, por favor reinicie la app", isError: true))
+            return
+        } //bajando documento de usuario y en el array de amigos metes a la persona que quieres añadir
+        let document = database.collection("users").document(user.lowercased())
+        document.updateData([
+            "friends": FieldValue.arrayUnion([userId])
+        ]){ error in
+            if let error = error {
+                completion(Result(message: error.localizedDescription, isError: true))
+            } else {
+                completion(Result(message: "Friend added successfully", isError: false))
+            }
+        }
+    }
+    func getFriendsOfCurrentUser(completion: @escaping ([String]?, Result) -> Void) {
+        guard let currentUserEmail = auth.currentUser?.email else {
+            completion(nil, Result(message: "No user is currently signed in.", isError: true))
+            return
+        }
+        
+        let userDocRef = database.collection("users").document(currentUserEmail.lowercased())
+        userDocRef.getDocument { documentSnapshot, error in
+            if let error = error {
+                completion(nil, Result(message: error.localizedDescription, isError: true))
+                return
+            }
+            
+            guard let data = documentSnapshot?.data(),
+                  let friends = data["friends"] as? [String] else {
+                completion(nil, Result(message: "Could not retrieve friends list", isError: true))
+                return
+            }
+            completion(friends, Result(message: "Friends retrieved successfully", isError: false))
+        }
+    }
+    
 }

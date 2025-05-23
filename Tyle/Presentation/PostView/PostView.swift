@@ -10,6 +10,8 @@ import SwiftUI
 struct PostView: View {
     var post: Post
     var profileAction: () -> Void
+    var followAction: () -> Void
+    @State var showFollow = true
     var body: some View {
         VStack(alignment: .leading) {
             HStack{
@@ -20,11 +22,17 @@ struct PostView: View {
                     }
                 Spacer()
                 Button {
-                    
+                    FirebaseManager().addFriend(userId: post.userId) { result in
+                        if result.isError{
+                        return
+                        }
+                       showFollow = false
+                    }
                 } label: {
                 Text("Añadir")
                 }
                 .buttonStyle(.bordered)
+                .opacity(showFollow ? 1 : 0)
             }
             .padding(.horizontal)
             Divider()

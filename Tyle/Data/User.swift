@@ -8,7 +8,6 @@
 struct User {
     let username: String
     let friends: [String]
-    let friendsPending: [String]
     let bio: String
     let email : String
 }

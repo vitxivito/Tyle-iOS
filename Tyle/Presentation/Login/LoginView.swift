@@ -17,7 +17,9 @@ struct LoginView: View {
             Spacer()
             TextField("Email", text: $vm.email )
                 .textFieldStyle(PrimaryTextField())
-            TextField("Password", text: $vm.password)
+                .textInputAutocapitalization(.never)
+                .disableAutocorrection(true)
+            SecureField("Password", text: $vm.password)
                 .textFieldStyle(PrimaryTextField())
            Spacer()
             Button {
