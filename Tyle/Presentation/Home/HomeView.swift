@@ -13,8 +13,11 @@ struct HomeView: View {
     var body: some View {
         ScrollView {
             VStack {
-                Text("Home")
-                    .font(.title)
+                Image("logo")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxHeight: 60)
+                
                 Picker("Home", selection: $vm.hometype) {
                     ForEach(HomeViewModel.HomeType.allCases) { type in
                         Text(type.rawValue.capitalized)

@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "Ilustración_sin_título 2.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
@@ -12,6 +13,7 @@
           "value" : "dark"
         }
       ],
+      "filename" : "Ilustración_sin_título 3.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
@@ -23,6 +25,7 @@
           "value" : "tinted"
         }
       ],
+      "filename" : "Ilustración_sin_título 4.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"

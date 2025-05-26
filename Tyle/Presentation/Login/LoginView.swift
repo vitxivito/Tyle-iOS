@@ -11,7 +11,12 @@ struct LoginView: View {
     @StateObject var vm = LoginViewModel()
     @EnvironmentObject var router: Router
     var body: some View {
-        VStack {
+        VStack(spacing:16) {
+            Image("logo")
+                .resizable()
+                .scaledToFit()
+                .frame(maxHeight: 100)
+            
             Text("Login")
                 .font(.title)
             Spacer()

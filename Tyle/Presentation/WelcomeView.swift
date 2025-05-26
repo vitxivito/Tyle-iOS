@@ -11,21 +11,31 @@ struct WelcomeView: View {
     @EnvironmentObject var router: Router
     var body: some View {
         VStack {
+            Image("logo")
+                .resizable()
+                .scaledToFit()
+                .frame(maxHeight: 100)
+            
             Text("Welcome")
                 .font(.title)
+                Spacer()
+    
             Button {
                 router.navigateTo(.login)
             } label: {
                 Text("Login")
             }
+            .buttonStyle(.primary)
             Button {
                 router.navigateTo(.signup)
-            } label: {
+            }label: {
                 Text("Sign Up")
             }
-            
+            .buttonStyle(.secondary)
+            Spacer()
         }
         .navigationBarBackButtonHidden()
+        .padding(.horizontal)
     }
 }
 

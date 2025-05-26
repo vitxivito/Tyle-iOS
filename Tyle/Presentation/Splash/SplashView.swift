@@ -11,7 +11,10 @@ struct SplashView: View {
     @StateObject var vm = SplashViewModel()
     @EnvironmentObject var router: Router
     var body: some View {
-        Text("Tyle")
+        Image("logo")
+            .resizable()
+            .scaledToFit()
+            .frame(maxHeight: 100)
         ProgressView()
             .task {
                 vm.checkUser()

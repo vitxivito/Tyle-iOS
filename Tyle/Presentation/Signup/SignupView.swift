@@ -10,7 +10,12 @@ import SwiftUI
 struct SignupView: View {
     @StateObject var vm = SignupViewModel()
     var body: some View {
-        VStack {
+        VStack(spacing: 16) {
+            Image("logo")
+                .resizable()
+                .scaledToFit()
+                .frame(maxHeight: 100)
+            
             Text("Sign up")
                 .font(.title)
             Spacer()
