@@ -14,7 +14,6 @@ class ProfileViewModel: ObservableObject {
     @Published var posts : [Post] = []
     @Published var bio: String = ""
     @Published var friendsAmount = 0
-    @Published var pendingFriendsAmount = 0
     @Published var goToWelcome = false
 
 
