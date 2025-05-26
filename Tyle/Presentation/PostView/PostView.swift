@@ -11,7 +11,7 @@ struct PostView: View {
     var post: Post
     var profileAction: () -> Void
     var followAction: () -> Void
-    @State var showFollow = true
+    @State var showFollow : Bool
     var body: some View {
         VStack(alignment: .leading) {
             HStack{
@@ -27,7 +27,9 @@ struct PostView: View {
                         return
                         }
                        showFollow = false
+                        followAction()
                     }
+                    
                 } label: {
                 Text("Añadir")
                 }

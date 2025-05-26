@@ -35,5 +35,9 @@ class HomeViewModel: ObservableObject {
             
         }
     }
+    func showFollow(for post: Post) -> Bool {
+       let userId = post.userId
+        return !friends.contains(userId)
+    }
 }
 

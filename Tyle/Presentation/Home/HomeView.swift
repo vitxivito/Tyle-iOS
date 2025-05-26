@@ -42,8 +42,9 @@ private extension HomeView {
                 PostView(post: post, profileAction: {
                     router.navigateTo(.profile(post.userId))
                 }, followAction: {
+                    vm.getAllPosts()
                     
-                })
+                }, showFollow: vm.showFollow(for: post))
             }
         }
         

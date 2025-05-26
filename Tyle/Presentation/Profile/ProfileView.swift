@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProfileView: View {
     @StateObject var vm : ProfileViewModel
+    @EnvironmentObject var router: Router
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible()),
@@ -26,6 +27,9 @@ struct ProfileView: View {
             .task {
                 vm.getPosts()
                 vm.getUserProfile()
+            }
+            .onChange(of: vm.goToWelcome) { oldValue, newValue in
+                router.popToRoot()
             }
         }
     }
@@ -45,6 +49,14 @@ private extension ProfileView{
     func profileCard() -> some View {
         Text(vm.username)
             .fontWeight(.semibold)
+            .frame(maxWidth: .infinity)
+            .safeAreaInset(edge: .trailing) {
+                Menu("...") {
+                    Button("Cerrar sesión") {
+                        vm.logOut()
+                    }
+                }
+            }
         HStack(spacing: 32){
             Button{
                 

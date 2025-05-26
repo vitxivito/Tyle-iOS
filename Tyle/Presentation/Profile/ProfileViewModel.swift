@@ -15,6 +15,8 @@ class ProfileViewModel: ObservableObject {
     @Published var bio: String = ""
     @Published var friendsAmount = 0
     @Published var pendingFriendsAmount = 0
+    @Published var goToWelcome = false
+
 
     private let manager = FirebaseManager()
     init(username: String) {
@@ -52,5 +54,16 @@ class ProfileViewModel: ObservableObject {
     }
     func isPersonalUser()-> Bool {
         username == (manager.getCurrentUserEmail() ?? "")
+    }
+    func logOut(){
+        manager.logOut { result in
+            if result .isError{
+                //show error
+                print(result.message)
+                return
+            }
+            self.goToWelcome = true
+        }
+        
     }
 }

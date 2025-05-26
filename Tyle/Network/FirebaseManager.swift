@@ -209,5 +209,12 @@ class FirebaseManager {
             completion(friends, Result(message: "Friends retrieved successfully", isError: false))
         }
     }
-    
+    func logOut(completion: @escaping (Result) -> Void) {
+        do {
+            try auth.signOut()
+            completion(Result(message: "Successfully logged out", isError: false))
+        } catch {
+            completion(Result(message: "Logout failed: \(error.localizedDescription)", isError: true))
+        }
+    }
 }
